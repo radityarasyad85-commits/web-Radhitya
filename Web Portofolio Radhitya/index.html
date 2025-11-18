@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portofolio — Tema Laut (Animasi)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --deep-1:#02293a;
+      --deep-2:#033f56;
+      --foam:#aee7ff;
+      --sand:#ffe9c6;
+      --accent:#00d4ff;
+      --glass: rgba(255,255,255,0.04);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--deep-1) 0%, var(--deep-2) 70%);color:#e8fbff}
+    .wrap{max-width:1100px;margin:0 auto;padding:28px}
+
+    header{display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#0fb9e6);display:grid;place-items:center;box-shadow:0 8px 24px rgba(2,10,18,0.6)}
+    nav a{color:rgba(255,255,255,0.9);text-decoration:none;margin-left:16px;font-weight:600}
+
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:22px;align-items:center;margin-top:18px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:22px;border-radius:14px;backdrop-filter: blur(6px)}
+    h1{font-size:36px;margin:0 0 10px}
+    p.lead{margin:0 0 18px;color:rgba(255,255,255,0.9)}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:var(--accent);color:#023040;font-weight:800;text-decoration:none}
+
+    /* animated sea canvas */
+    .sea-wrap{position:relative;border-radius:14px;overflow:hidden;height:360px;background:linear-gradient(180deg,#0b3b52 0%, #063a55 50%, #022b3a 100%);box-shadow:0 14px 50px rgba(0,0,0,0.6)}
+
+    /* waves (svg) */
+    .waves{position:absolute;left:0;right:0;bottom:0;height:40%;pointer-events:none}
+
+    /* floating bubbles */
+    .bubble{position:absolute;border-radius:50%;background:rgba(255,255,255,0.08);opacity:0.9}
+
+    /* fish */
+    .fish{position:absolute;width:120px;height:60px;transform-origin:center;filter:drop-shadow(0 6px 10px rgba(0,0,0,0.45))}
+    .fish .body{fill:#ffd07a}
+    .fish .fin{fill:#ffb463}
+
+    /* keyframes */
+    @keyframes swim-left-right{0%{transform:translateX(-20%) scaleX(1)}50%{transform:translateX(80%) scaleX(1)}100%{transform:translateX(-20%) scaleX(1)}}
+    @keyframes swim-right-left{0%{transform:translateX(120%) scaleX(-1)}50%{transform:translateX(-20%) scaleX(-1)}100%{transform:translateX(120%) scaleX(-1)}}
+    @keyframes bob{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+    @keyframes rise{0%{transform:translateY(0) scale(0.9);opacity:0.9}100%{transform:translateY(-220px) scale(1.1);opacity:0.12}}
+
+    /* projects grid */
+    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
+    .project{background:var(--glass);padding:12px;border-radius:10px}
+
+    .two-col{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
+    form input, textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    form button{padding:10px 12px;border-radius:8px;border:0;background:var(--accent);color:#023040;font-weight:800}
+
+    footer{margin-top:24px;text-align:center;opacity:0.9}
+
+    /* responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .two-col{grid-template-columns:1fr}
+      nav a{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <!-- simple wave glyph -->
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 15c2.5-4 5.5-4 8 0 2.5 4 5.5 4 8 0" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+          </svg>
+        </div>
+        <div>
+          <div style="font-weight:800">[Nama Anda]</div>
+          <div style="font-size:12px;opacity:0.85">Designer • Fotografi • Tema Laut</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">Tentang</a>
+        <a href="#projects">Proyek</a>
+        <a href="#contact">Kontak</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="card">
+          <h1>Halo — Saya <span style="color:var(--accent)">[Radhitya Ibnu Rasyad]</span></h1>
+          <p class="lead">Portofolio bertema laut dengan animasi interaktif: ombak SVG, ikan berenang, dan gelembung naik. Cocok untuk fotografer laut, desainer, atau studio kreatif.</p>
+          <a class="btn" href="#projects">Lihat Proyek</a>
+
+          <div class="projects">
+            <div class="project">
+              <div style="font-size:12px;opacity:0.85">Web / UI</div>
+              <h3>Ocean Gallery</h3>
+              <p>Galeri foto bawah laut responsif dengan transisi lembut.</p>
+            </div>
+            <div class="project">
+              <div style="font-size:12px;opacity:0.85">Branding</div>
+              <h3>Blue Tides</h3>
+              <p>Identitas visual untuk layanan wisata selam.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="sea-wrap" id="sea">
+          <!-- floating fish (SVG) -->
+          <svg class="fish" id="fish1" viewBox="0 0 120 60" style="left:6%;top:60%;animation:swim-left-right 12s linear infinite, bob 4s ease-in-out infinite">
+            <ellipse class="body" cx="50" cy="30" rx="36" ry="18" />
+            <polygon class="fin" points="86,30 110,18 110,42" />
+            <circle cx="42" cy="24" r="3" fill="#04222b" />
+          </svg>
+
+          <svg class="fish" id="fish2" viewBox="0 0 120 60" style="left:60%;top:30%;animation:swim-right-left 14s linear infinite, bob 3.3s ease-in-out infinite">
+            <ellipse class="body" cx="50" cy="30" rx="36" ry="18" />
+            <polygon class="fin" points="86,30 110,18 110,42" />
+            <circle cx="42" cy="24" r="3" fill="#04222b" />
+          </svg>
+
+          <!-- bubbles (divs animated by JS) -->
+          <div class="bubble" style="width:12px;height:12px;left:18%;bottom:28%;animation:rise 6s linear infinite;opacity:0.85;border:1px solid rgba(255,255,255,0.06)"></div>
+          <div class="bubble" style="width:18px;height:18px;left:34%;bottom:18%;animation:rise 8s linear infinite;opacity:0.75;border:1px solid rgba(255,255,255,0.06)"></div>
+          <div class="bubble" style="width:10px;height:10px;left:78%;bottom:22%;animation:rise 5.5s linear infinite;opacity:0.9;border:1px solid rgba(255,255,255,0.06)"></div>
+
+          <!-- waves using SVG for smooth animation -->
+          <div class="waves" aria-hidden="true">
+            <svg viewBox="0 0 1440 320" preserveAspectRatio="none" style="width:100%;height:100%">
+              <path id="wave1" fill="rgba(255,255,255,0.06)"></path>
+              <path id="wave2" fill="rgba(255,255,255,0.03)"></path>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="two-col">
+        <div class="card">
+          <h3>Tentang Saya</h3>
+          <p>Saya seorang desainer dan fotografer yang terinspirasi oleh lautan—warna, tekstur, dan ritme. Saya membuat pengalaman visual yang tenang, responsif, dan mudah diingat.</p>
+
+          <h4 style="margin-top:12px">Keahlian</h4>
+          <ul style="margin:8px 0 0;padding-left:18px;color:rgba(255,255,255,0.95)">
+            <li>UI/UX & Web Development</li>
+            <li>Fotografi Bawah Laut & Editing</li>
+            <li>Illustration & Motion</li>
+            <li>Branding & Identity</li>
+          </ul>
+        </div>
+
+        <aside id="contact" class="card">
+          <h3>Hubungi Saya</h3>
+          <form onsubmit="event.preventDefault();alert('Terima kasih — formulir contoh (non-nyata).')">
+            <label for="name">Nama</label>
+            <input id="name" placeholder="Nama Anda" />
+            <label for="email">Email</label>
+            <input id="email" placeholder="email@domain.com" />
+            <label for="message">Pesan</label>
+            <textarea id="message" rows="4" placeholder="Halo! Saya tertarik..."></textarea>
+            <button type="submit">Kirim</button>
+          </form>
+        </aside>
+      </section>
+
+    </main>
+
+  <footer>
+  © <span id="year"></span> — Radhitya Ibnu Rasyad • Portofolio Tema Laut dengan Animasi
+</footer>
+
+  <script>
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // animate waves by updating path d over time (sinusoidal motion)
+    const wave1 = document.getElementById('wave1');
+    const wave2 = document.getElementById('wave2');
+    const width = 1440; const height = 320;
+
+    function wavePath(amp, freq, phase, yOffset){
+      let d = 'M0 ' + yOffset + ' ';
+      for(let x=0;x<=width;x+=20){
+        const y = yOffset + Math.sin((x*freq + phase)) * amp;
+        d += 'L' + x + ' ' + y + ' ';
+      }
+      d += 'L' + width + ' ' + height + ' L0 ' + height + ' Z';
+      return d;
+    }
+
+    let t = 0;
+    function animate(){
+      t += 0.02;
+      wave1.setAttribute('d', wavePath(14, 0.02, t, 250));
+      wave2.setAttribute('d', wavePath(22, 0.015, t+2, 270));
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // add randomized bubbles for subtle effect (clone some bubbles)
+    const sea = document.getElementById('sea');
+    function spawnBubble(){
+      const b = document.createElement('div');
+      const size = Math.random()*18 + 6;
+      b.className = 'bubble';
+      b.style.width = size + 'px';
+      b.style.height = size + 'px';
+      b.style.left = Math.random()*88 + '%';
+      b.style.bottom = Math.random()*10 + '%';
+      b.style.opacity = 0.85;
+      b.style.border = '1px solid rgba(255,255,255,0.06)';
+      b.style.animation = 'rise ' + (4 + Math.random()*6) + 's linear forwards';
+      sea.appendChild(b);
+      setTimeout(()=> b.remove(), 9000);
+    }
+    setInterval(spawnBubble, 1200);
+
+    // responsive fish scaling on small screens
+    function resizeFish(){
+      const f1 = document.getElementById('fish1');
+      const f2 = document.getElementById('fish2');
+      if(window.innerWidth < 600){
+        f1.style.transform += ' scale(0.7)';
+        f2.style.transform += ' scale(0.7)';
+      }
+    }
+    window.addEventListener('load', resizeFish);
+    window.addEventListener('resize', resizeFish);
+
+  </script>
+</body>
+</html>
